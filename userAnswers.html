@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <title>User Input</title>
+    <script>
+      const questionsArray = ["is talkative",
+    "does a thorough job",
+    "is original, comes up with new ideas",
+    "is helpful, unselfish with others",
+    "can be somewhat careless",
+    "is relaxed, handles stress well",
+    "is curious about many things",
+    "is full of energy",
+    "starts quarrels with others",
+    "is a reliable worker",
+    "is a deep thinker",
+    "tends to be disorganized",
+    "worries a lot",
+    "tends to be quiet",
+    "tends to be lazy",
+    "sometimes shy",
+    "is sometimes rude to others",
+    "tends to find fault with others",
+    "gets nervous easily",
+    "likes to work in a team"
+]
+
+function transformJob(answer_data) {
+    let chosen_job = '';
+    if (answer_data === 'ceo') {
+        chosen_job = 'CEO of large mega-corporation';
+    } else if (answer_data === 'astronaut') {
+        chosen_job = 'Astronaut';
+
+    } else if (answer_data === 'doctor') {
+        chosen_job = 'Medical doctor';
+
+    } else if (answer_data === 'model') {
+        chosen_job = 'Fashion model';
+
+    } else if (answer_data === 'rockstar') {
+        chosen_job = 'Rock star';
+
+    } else if (answer_data === 'garbage') {
+        chosen_job = 'Refuse collection operative';
+    }
+    return chosen_job
+}
+
+const xmlhttp = new XMLHttpRequest();
+//This handles if the .json file actually exists in the /view/input
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+        const receivedInput = JSON.parse(xmlhttp.responseText);
+        console.log(receivedInput);
+        //receivedInput["name"]
+        document.body.innerHTML += "<p>Input your name: " + receivedInput["name"] + "</p>";
+        document.body.innerHTML += "<p>What is your gender? " + receivedInput["gender"] + "</p>";
+        document.body.innerHTML += "<p>In what year were you born? " + receivedInput["birthyear"] + "</p>";
+        document.body.innerHTML += "<p>What is the country of your birth? " + receivedInput["birthplace"] + "</p>";
+        document.body.innerHTML += "<p>What country do you live in now? " + receivedInput["residence"] + "</p>";
+        document.body.innerHTML += "<hr>";
+        document.body.innerHTML += "<h4>Multichoice question answer (1 - 5)</h4>";
+        for (let i = 0; i < questionsArray.length; i++) {
+            document.body.innerHTML += "<p>" + questionsArray[i] + "? " + receivedInput["questions"][i] + "</p>";
+        }
+        document.body.innerHTML += "<hr>";
+        let fullJob = transformJob(receivedInput["job"])
+        document.body.innerHTML += "<p>Which of these jobs would be most appealing to you? " + fullJob + "</p>";
+        document.body.innerHTML += "<p>Which of these animals would appeal to you as a pet?</p>";
+        for (let i = 0; i < receivedInput["pets"].length; i++) {
+            document.body.innerHTML += "<p>" + receivedInput["pets"][i] + "</p>";
+        }
+        document.body.innerHTML += "<p> Enter a message or comment if you have one: " + receivedInput["message"] + "</p>";
+    }
+
+
+
+}
+const answerUri = "/view/input";
+xmlhttp.open("GET", answerUri, true);
+xmlhttp.send();
+    </script>
+  </head>
+  <!-- Javascript here or put in a separate .js file -->
+  <body>
+    <nav>
+      <h1>User Input</h1>
+    </nav>
+    <p class="introPar">Welcome to your User Input:</p>
+    <div class="outerContainer">
+      <!-- Put in various widgets as appropriate -->
+    </div>
+  </body>
+</html>

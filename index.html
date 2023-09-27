@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <title>Psychological Profiling</title>
+    <!-- Javascript here or put in a separate .js file -->
+    <script>
+      function completePsychAssessment() {
+        window.open("form", "complete quiz", "height=750,width=1000");
+      }
+
+      function viewInput() {
+        const newWindow = window.open("userAnswers.html");
+      }
+
+      function viewProfile() {
+        const newWindow2 = window.open("userProfile.html");
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <h1>Psych Profile</h1>
+    </nav>
+    <p class="introPar">Welcome to your Psychological Profile:</p>
+    <div class="outerContainer">
+      <button type="button" onclick="completePsychAssessment()">Complete Psychological Assessment</button>
+      <button type="button" onclick="viewInput()">View your Input</button>
+      <button type="button" onclick="viewProfile()">View your Psychological Profile</button>
+      <!-- Put in various widgets as appropriate -->
+    </div>
+    <img alt="Homepage Image" class="psychImage" src="https://images.unsplash.com/photo-1638443436690-db587cc66f12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+    <footer>
+      <p class="footerText">Author: Michael Kemp 22010820 <br>
+    </footer>
+  </body>
+</html>

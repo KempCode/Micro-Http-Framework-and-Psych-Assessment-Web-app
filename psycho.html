@@ -1,0 +1,146 @@
+<!-- HTML page for classical form input for 159.352 Assignment 1-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <title>Personality Test</title>
+  </head>
+  <body>
+    <nav>
+        <h1>Online Personality Test </h1><br>
+    </nav>
+    </h1>
+    <form method="post" action="analysis" name="analysis">
+      <p class="topForm">
+        <input type="submit" name="submit" value="Submit">
+        <input type="reset" name="reset" value="Clear">
+      </p>
+      <table>
+        <tr>
+          <td>
+            <b>Input your name</b>
+          </td>
+          <td>
+            <input type="text" name="name" size="25">
+          </td>
+          <td>
+            <input type="hidden" id="uniqueID" name="uniqueID" value="start">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>What is your gender?</b>
+          </td>
+          <td>
+            <input type="radio" name="gender" value="M">Male <input type="radio" name="gender" value="F">Female
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>In what year were you born?</b>
+          </td>
+          <td>
+            <input type="text" name="birthyear" size="25">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>What is the country of your birth?</b>
+          </td>
+          <td>
+            <input type="text" name="birthplace" size="25">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>What country do you live in now?</b>
+          </td>
+          <td>
+            <input type="text" name="residence" size="25">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <hr noshade size=2>
+      <p>
+      <h3>I see myself as someone who ...</h3>
+      <!-- This piece of Javascript generates a series of questions each with radio
+     button responses. All responses at the server side will be collected
+     into an array called "question" -->
+      <ol>
+        <script>
+            let theDate = new Date();
+            let timestamp = theDate.getTime()
+            console.log(timestamp)
+            //Using the timestamp as a unique identifier for the personal .json files.
+            document.getElementById("uniqueID").value = timestamp
+
+            function putquestion(txt, qno) {
+                document.write("<li><b> ... " + txt + "</b><br>")
+                document.write("Disagree")
+                document.write("&nbsp <input type=radio name=question[" + qno + "] value=1 checked>1")
+                for (i = 2; i <= 5; i++) {
+                    document.write("&nbsp <input type=radio name=question[" + qno + "] value=" + i + ">" + i)
+                }
+                document.write("&nbsp Agree")
+            }
+            putquestion("is talkative", 1)
+            putquestion("does a thorough job", 2)
+            putquestion("is original, comes up with new ideas", 3)
+            putquestion("is helpful, unselfish with others", 4)
+            putquestion("can be somewhat careless", 5)
+            putquestion("is relaxed, handles stress well", 6)
+            putquestion("is curious about many things", 7)
+            putquestion("is full of energy", 8)
+            putquestion("starts quarrels with others", 9)
+            putquestion("is a reliable worker", 10)
+            putquestion("is a deep thinker", 11)
+            putquestion("tends to be disorganized", 12)
+            putquestion("worries a lot", 13)
+            putquestion("tends to be quiet", 14)
+            putquestion("tends to be lazy", 15)
+            putquestion("sometimes shy", 16)
+            putquestion("is sometimes rude to others", 17)
+            putquestion("tends to find fault with others", 18)
+            putquestion("gets nervous easily", 19)
+            putquestion("likes to work in a team", 20)
+        </script>
+      </ol>
+      <p>
+        <hr noshade size=2>
+      <p>
+        <b>Which of these jobs would be most appealing to you?</b>
+        <br />
+        <select name=job>
+          <option value="ceo">CEO of large mega-corporation <br />
+          <option value="astronaut">Astronaut <br />
+          <option value="doctor">Medical doctor <br />
+          <option value="model">Fashion model <br />
+          <option value="rockstar">Rock star <br />
+          <option value="garbage">Refuse collection operative <br />
+        </select>
+      <p>
+        <hr noshade size=2>
+      <p>
+        <b>Which of these animals would appeal to you as a pet?</b>
+        <br />
+        <input type=checkbox name=pets[] value="dog">Dog <br />
+        <input type=checkbox name=pets[] value="cat">Cat <br />
+        <input type=checkbox name=pets[] value="duck">Duck <br />
+      <p>
+        <b>Enter a message or comment if you have one.</b>
+        <br />
+        <textarea name="message" cols="60" rows="6"></textarea>
+        <br />
+        <br />
+    </form>
+  </body>
+
+</html>

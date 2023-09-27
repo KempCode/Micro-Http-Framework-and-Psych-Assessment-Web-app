@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <title>Psychological Profile</title>
+    <script>
+      const xmlhttp = new XMLHttpRequest();
+//This handles if the .json file actually exists in the /view/input
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+        const psychProfile = JSON.parse(xmlhttp.responseText);
+        console.log(psychProfile);
+
+        document.body.innerHTML += "<p id='lefty'><b>Name: </b>" + psychProfile["name"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Gender: </b>" + psychProfile["gender"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Birth Year: </b>" + psychProfile["birthyear"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Country of Birth: </b>" + psychProfile["birthplace"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Country of Residence: </b>" + psychProfile["residence"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Your Message: </b>" + psychProfile["message"] + "</p>";
+        document.body.innerHTML += "<p id='lefty'><b>Your selected most appealing job: </b>" + psychProfile["chosen_job"] + "</p>";
+        document.body.innerHTML += "<hr>";
+
+        document.body.innerHTML += "<h4> After intense review of your quiz answers, the best suited job(s) for you is: </h4>";
+        let most_suited_jobs_array = psychProfile["most_suited_jobs"];
+        for (let i = 0; i < most_suited_jobs_array.length; i++) {
+            document.body.innerHTML += "<p>" + most_suited_jobs_array[i] + "</p>";
+        }
+        document.body.innerHTML += "<hr>";
+
+        document.body.innerHTML += "<h4> Movie Recommendation: </h4>";
+        let movie_dict = psychProfile["movie"];
+        console.log(movie_dict);
+
+        document.body.innerHTML += "<img alt='Movie Poster' class='moviePoster' src='" + movie_dict["Poster"] + "'>";
+        for (const [key, value] of Object.entries(movie_dict)) {
+            //DROP Irrelevant values.
+            if (key === "Response" || key === "Type" || key === "imdbID" || key === "Production" || key === "Website" ||
+                key === "Poster" || key === "Metascore" || key === "imdbRating") {
+                continue;
+            }
+            if (key === "Ratings") {
+                let testing = movie_dict["Ratings"];
+                document.body.innerHTML += "<p id='lefty'><b>Ratings:</b></p><ul>";
+                for (let i = 0; i < movie_dict["Ratings"].length; i++) {
+                    document.body.innerHTML += "<li>" + "<b>" + testing[i]["Source"] + "</b>: " + testing[i]["Value"] + "</li>";
+                }
+                document.body.innerHTML += "</ul>";
+                continue;
+            }
+            document.body.innerHTML += "<p id='lefty'><b>" + key + "</b> : " + value + "</p>";
+        }
+        document.body.innerHTML += "<hr>";
+
+        console.log(psychProfile["pets"]);
+        document.body.innerHTML += "<h4> Pet Images: </h4>";
+        for (const [key, value] of Object.entries(psychProfile["pets"])) {
+            document.body.innerHTML += "<p> <b>Since you Selected: </b>" + key + "</p>";
+            document.body.innerHTML += "<img alt='Pet Images' class='petImages' src='" + value + "'>";
+        }
+    }
+
+
+
+}
+const answerUri = "/view/profile";
+xmlhttp.open("GET", answerUri, true);
+xmlhttp.send();
+    </script>
+  </head>
+  <!-- Javascript here or put in a separate .js file -->
+  <body>
+    <nav>
+      <h1>Psychological Profile</h1>
+    </nav>
+    <p class="introPar">Welcome to your Custom Psychological Profile:</p>
+    <div class="outerContainer">
+      <!-- Put in various widgets as appropriate -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+ button{
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border: none;
+    background-color: seagreen;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 3%;
+  }
+
+  button:hover{
+    background-color: #214c34;
+  }
+
+
+  html{
+    width: 60%;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1, p{
+    text-align: center;
+  }
+
+
+  .outerContainer{
+    margin:auto;
+    width: 40%;
+
+  }
+
+  body{
+
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(144,144,144,1) 97%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .introPar{
+    margin-top:115px ;
+    font-weight: bolder;
+    font-size: 15pt;
+    margin-bottom: 30px;
+  }
+
+  nav{
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(102,102,102,1) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    color:white;
+    font-family: 'Cinzel Decorative', cursive;
+  }
+
+  .psychImage{
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    max-height: 200px;
+    border-radius: 10px;
+  }
+
+  footer{
+    background: rgb(0,0,0);
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(102,102,102,1) 100%);
+    padding: 3px;
+    text-align: center;
+    color: white;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    font-size: 10pt;
+  }
+
+  .topForm{
+    margin-top: 100px;
+  }
+
+  h4{
+    text-align: center;
+  }
+
+  #lefty{
+    text-align: left;
+
+  }
+
+  .moviePoster, .petImages{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .petImages{
+    width: 50%;
+  }
+
+
+  @media only screen and (max-width: 800px) {
+    button {
+      font-size: 10px;
+    }
+    footer{
+      height:50px;
+    }
+}
